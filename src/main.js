@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import { routes } from './routes';
 import Vuetify from 'vuetify';
 import Vuex from 'vuex';
+import VueSweetalert2 from 'vue-sweetalert2';
 
 Vue.config.productionTip = false
 
@@ -11,12 +12,14 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(Vuetify);
 Vue.use(Vuex);
+Vue.use(VueSweetalert2);
 
 export const mutations = {
   showModal(state, componentName) {
     state.modalVisible = true;
     state.selectedStep = 1;
     state.modalComponent = componentName;
+    state.confirm = false;
     console.log(state.selectedStep);
   },
   hideModal(state) {
@@ -29,12 +32,27 @@ export const mutations = {
   },
   updateStep (state, step) {
     state.selectedStep = step;
+  },
+  hideModalWithConfirm(state) {
+    console.log("hide modal" + state);
+    // state.modalVisible = false;
+    state.confirm = true;
+  },
+  hideBothModal(state){
+    state.modalVisible = false;
+    state.confirm = false;
+    state.success = true;
+  },
+  hideConfirmOrder(state){
+    state.confirm = false;
   }
 };
 
 export const state = {
   modalVisible: false,
   modalComponent: null,
+  confirm: false,
+  success: false,
 };
 
 export const getters = {

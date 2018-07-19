@@ -10,6 +10,9 @@
           <Footer/>
       </v-content>
       <Order v-if="visible"/>
+      <ConfirmDialog v-if="confirm"/>
+      <sweet-modal icon="success" ref="successModal">
+      </sweet-modal>
   </v-app>
 </template>
 <script>
@@ -20,7 +23,9 @@ import Kickstart from './Home/Kickstart.vue';
 import Info from './Home/Info.vue';
 import Footer from './Home/Footer.vue';
 import Order from './Order.vue';
+import ConfirmDialog from './Order/ConfirmDialog.vue';
 import { mapState,mapMutations } from 'vuex';
+import { SweetModal } from 'sweet-modal-vue';
 
 export default {
   name: 'Home',
@@ -31,11 +36,15 @@ export default {
     Kickstart,
     Info,
     Footer,
-    Order
+    Order,
+    ConfirmDialog,
+    SweetModal
   },
   computed: {
     ...mapState({
       visible: 'modalVisible',
+      confirm : 'confirm',
+      orderSuccess : 'success'
     }),
   },
   methods: {

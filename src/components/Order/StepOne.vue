@@ -1,12 +1,10 @@
 <template>
-  <v-form v-model="valid"
-    height="200px"
-    width="10px">
+  <v-form v-model="valid">
     <v-text-field
       v-model="name"
       :rules="nameRules"
       :counter="10"
-      label="Name"
+      label="Điện thoại"
       required
     ></v-text-field>
     <v-text-field
@@ -26,8 +24,8 @@ export default {
         valid: false,
         name: '',
         nameRules: [
-          v => !!v || 'Name is required',
-          v => v.length <= 10 || 'Name must be less than 10 characters'
+          v => !!v || 'Phone is required',
+          v => v.length <= 10 || 'Phone must be less than 10 characters'
         ],
         email: '',
         emailRules: [
